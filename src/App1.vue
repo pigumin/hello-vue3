@@ -1,18 +1,23 @@
-<template>
-  <div class="container">
-    <p>{{ countRef }}</p>
-    <button @click="addNum">点我</button>
-  </div>
-</template>
 <script>
-  import { ref } from "vue";
+  import { reactive, computed } from "vue";
   export default {
     setup() {
-      const countRef = ref(0);
-      const addNum = () => {
-        countRef.value++;
-      };
-      return { countRef, addNum };
+      const author = reactive({
+        name: "John Doe",
+        books: ["Vue 2 - Advanced Guide", "Vue 3 - Basic Guide", "Vue 4 - The Mystery"],
+      });
+      // 一个计算属性 ref
+      const publishedBooksMessage = computed(() => {
+        return author.books.length > 0 ? "Yes" : "No";
+      });
+      return {
+        publishedBooksMessage
+      }
     },
   };
 </script>
+
+<template>
+  <p>Has published books:</p>
+  <span>{{ publishedBooksMessage }}</span>
+</template>
