@@ -1,17 +1,22 @@
-<template></template>
+<template>
+  <div class="container">
+    <p>{{ stateRef.count }}</p>
+    <button @click="addNum">点我</button>
+    <button @click="putVal">赋值</button>
+  </div>
+</template>
 <script>
-  import { reactive } from "vue";
+  import { ref } from "vue";
   export default {
     setup() {
-      const person = { name: "zhangsan", age: 18 };
-      const personPoxy = reactive(person);
-      console.log(person === personPoxy);         // false
-
-      const personPoxy2 = reactive(person);
-      console.log(personPoxy === personPoxy2);    // true
-
-      const personPoxy3 = reactive(personPoxy);
-      console.log(personPoxy === personPoxy3);    // true
+      const stateRef = ref({ count: 0 });
+      const addNum = () => {
+        stateRef.value.count++;
+      };
+      const putVal = () => {
+        stateRef.value = { count: 10 }
+      }
+      return { stateRef, addNum, putVal };
     },
   };
 </script>
