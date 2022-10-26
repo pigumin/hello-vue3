@@ -11,7 +11,7 @@
       const countRef = ref(0);
       const addNum = () => {
         countRef.value++;
-      }
+      };
       return { countRef, addNum };
     },
   };
