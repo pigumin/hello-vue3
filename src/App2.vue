@@ -1,14 +1,17 @@
-<template>
-  <div class="container">
-    <h1 @click="say()">{{ msg }}</h1>
-  </div>
-</template>
-<script setup>
-  console.log("setup执行了");
-  console.log(this);
-  // 定义数据和函数
-  const msg = "hi vue3";
-  const say = () => {
-    console.log(msg);
+<template></template>
+<script>
+  import { reactive } from "vue";
+  export default {
+    setup() {
+      const person = { name: "zhangsan", age: 18 };
+      const personPoxy = reactive(person);
+      console.log(person === personPoxy);         // false
+
+      const personPoxy2 = reactive(person);
+      console.log(personPoxy === personPoxy2);    // true
+
+      const personPoxy3 = reactive(personPoxy);
+      console.log(personPoxy === personPoxy3);    // true
+    },
   };
 </script>
