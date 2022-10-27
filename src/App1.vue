@@ -1,21 +1,14 @@
 <template>
   <div>
-    <input ref="inputRef" />
+    <Hello name="李四" :age="40"/>
   </div>
 </template>
 
 <script>
-  import { ref, onMounted } from "vue";
+  import Hello from "./components/Hello1.vue"
   export default {
-    setup() {
-      const inputRef = ref(null);
-      onMounted(() => {
-        console.log(inputRef);
-        inputRef.value.focus();
-      });
-      return {
-        inputRef,
-      };
-    },
+    components: {
+      Hello
+    }
   };
 </script>

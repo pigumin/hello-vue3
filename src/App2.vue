@@ -1,24 +1,14 @@
 <template>
-  <ul>
-    <li ref="itemRefs" v-for="item in list">{{ item }}</li>
-  </ul>
+  <div>
+    <Hello name="李四" :age="40" />
+  </div>
 </template>
 
 <script>
-  import { ref, onMounted } from "vue";
+  import Hello from "./components/Hello2.vue";
   export default {
-    setup() {
-      const itemRefs = ref([]);
-      const list = ref(['A','B','C'])
-      onMounted(() => {
-        itemRefs.value.forEach(itemRef => {
-            console.log(itemRef);
-        })
-      });
-      return {
-        itemRefs,
-        list
-      };
+    components: {
+      Hello,
     },
   };
 </script>
