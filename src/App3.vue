@@ -1,30 +1,26 @@
 <template>
-  <div>
-    <p>x：{{ x }}</p>
-    <p>y：{{ y }}</p>
-    <button @click="clickMe">点我</button>
-  </div>
+  <Hello :level="3" title="标题" ref="helloRef" />
 </template>
 
 <script>
-  import { ref, watch } from "vue";
+  import { ref, onMounted } from "vue";
+  import Hello from "./components/Hello.vue";
   export default {
+    components: {
+      Hello,
+    },
     setup() {
-      const x = ref(10);
-      const y = ref(20);
-      watch(
-        () => x.value + y.value,
-        (sum) => {
-          console.log(`sum of x + y is：${sum}`);
-        }
-      );
-      const clickMe = () => {
-        x.value = 1;
-      };
+      const helloRef = ref(null);
+      onMounted(() => {
+        const { value } = helloRef;
+        console.log(value.level);
+        console.log(value.title);
+        console.log(value.count);
+        value.hello();
+        value.world();
+      });
       return {
-        x,
-        y,
-        clickMe,
+        helloRef,
       };
     },
   };

@@ -1,27 +1,21 @@
 <template>
   <div>
-    <p>{{ msg }}</p>
-    <button @click="clickMe">点我</button>
+    <input ref="inputRef" />
   </div>
 </template>
 
-
 <script>
-  import { ref, watch } from "vue";
+  import { ref, onMounted } from "vue";
   export default {
     setup() {
-      const msg = ref("hello vue3")
-      const clickMe = () => {
-        msg.value = msg.value === "hello vue3" ? "vue3 hello" : "hello vue3"
-      }
-      watch(msg, (newMsg) => {
-        console.log(`msg is ${newMsg}`);
-      })
+      const inputRef = ref(null);
+      onMounted(() => {
+        console.log(inputRef);
+        inputRef.value.focus();
+      });
       return {
-        msg,
-        clickMe
-      }
+        inputRef,
+      };
     },
   };
 </script>
-

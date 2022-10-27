@@ -1,29 +1,23 @@
 <template>
-  <div>
-    <p>name：{{ person.name }}</p>
-    <p>age：{{ person.age }}</p>
-    <button @click="clickMe">点我</button>
-  </div>
+  <ul>
+    <li ref="itemRefs" v-for="item in list">{{ item }}</li>
+  </ul>
 </template>
 
 <script>
-  import { reactive, watch } from "vue";
+  import { ref, onMounted } from "vue";
   export default {
     setup() {
-      const person = reactive({ name: "张三", age: 30 });
-      const clickMe = () => {
-        person.name =
-          person.name === "张三" ? "李四" : "张三";
-        person.age = person.age === 30 ? 20 : 30;
-      };
-      watch(person, (newPerson) => {
-        console.log(
-          `person is ${newPerson.name},${newPerson.age}`
-        );
+      const itemRefs = ref([]);
+      const list = ref(['A','B','C'])
+      onMounted(() => {
+        itemRefs.value.forEach(itemRef => {
+            console.log(itemRef);
+        })
       });
       return {
-        person,
-        clickMe,
+        itemRefs,
+        list
       };
     },
   };
