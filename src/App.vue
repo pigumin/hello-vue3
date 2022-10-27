@@ -9,10 +9,9 @@
   <Hello v-if="flag"/>
 </template>
 
-
 <script>
   import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, ref } from "vue";
-  import Hello from "./Hello.vue";
+  import Hello from "./components/Hello.vue";
   export default {
     components: {
       Hello
