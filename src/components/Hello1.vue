@@ -1,23 +1,25 @@
 <template>
   <div>
-    Hello组件
-    <hr />
-    <p>name：{{ name }}</p>
-    <p>age：{{ age }}</p>
+    <h1>Hello组件</h1>
+    <button @click="clickNoParam">触发事件：无参数</button>
+    <button @click="clickWithParam('hello')">触发事件：有参数</button>
   </div>
 </template>
 
-<script setup>
-  const props = defineProps({
-    name: {
-      type: String,
-      default: "张三"
+<script>
+  export default {
+    emits: ['eventNoParam', 'eventWithParam'],
+    setup(props, { emit }) {
+      const clickNoParam = () => {
+        emit('eventNoParam')
+      }
+      const clickWithParam = (param) => {
+        emit('eventWithParam', param, "world")
+      }
+      return {
+        clickNoParam,
+        clickWithParam
+      }
     },
-    age: {
-      type: Number,
-      default: 30
-    }
-  });
-  console.log(props.name);
-  console.log(props.age);
+  };
 </script>

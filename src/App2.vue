@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Hello name="李四" :age="40" />
+    <h1>App组件</h1>
+    <hr />
+    <Hello @eventNoParam="eventNoParam" @eventWithParam="eventWithParam" />
   </div>
 </template>
 
@@ -10,5 +12,17 @@
     components: {
       Hello,
     },
+    setup() {
+      const eventNoParam = () => {
+        console.log("eventNoParam函数被触发了...");
+      }
+      const eventWithParam = (param1, param2) => {
+        console.log(`eventWithParam函数被触发了...参数是：${param1}, ${param2}`);
+      }
+      return {
+        eventNoParam,
+        eventWithParam
+      }
+    }
   };
 </script>
