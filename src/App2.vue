@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h1>App组件</h1>
-    <hr />
-    <Hello @eventNoParam="eventNoParam" @eventWithParam="eventWithParam" />
+    <Hello>
+      <template v-slot:header> Header </template>
+      <template v-slot:default> Body </template>
+      <template v-slot:footer> Footer </template>
+    </Hello>
   </div>
 </template>
 
@@ -12,17 +14,5 @@
     components: {
       Hello,
     },
-    setup() {
-      const eventNoParam = () => {
-        console.log("eventNoParam函数被触发了...");
-      }
-      const eventWithParam = (param1, param2) => {
-        console.log(`eventWithParam函数被触发了...参数是：${param1}, ${param2}`);
-      }
-      return {
-        eventNoParam,
-        eventWithParam
-      }
-    }
   };
 </script>

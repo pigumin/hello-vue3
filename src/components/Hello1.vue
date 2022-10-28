@@ -1,25 +1,29 @@
 <template>
   <div>
-    <h1>Hello组件</h1>
-    <button @click="clickNoParam">触发事件：无参数</button>
-    <button @click="clickWithParam('hello')">触发事件：有参数</button>
+    <header>
+      <slot name="header" :countRef="countRef"></slot>
+    </header>
+    <main>
+      <slot :flagRef="flagRef"></slot>
+    </main>
+    <footer>
+      <slot name="footer" :titleRef="titleRef"></slot>
+    </footer>
   </div>
 </template>
 
 <script>
+  import { ref } from "vue";
   export default {
-    emits: ['eventNoParam', 'eventWithParam'],
-    setup(props, { emit }) {
-      const clickNoParam = () => {
-        emit('eventNoParam')
-      }
-      const clickWithParam = (param) => {
-        emit('eventWithParam', param, "world")
-      }
+    setup() {
+      const countRef = ref(100);
+      const titleRef = ref("标题");
+      const flagRef = ref(true);
       return {
-        clickNoParam,
-        clickWithParam
-      }
+        countRef,
+        titleRef,
+        flagRef,
+      };
     },
   };
 </script>
