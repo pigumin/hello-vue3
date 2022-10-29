@@ -1,28 +1,17 @@
 <template>
   <div>
-    <header>
-      <slot name="header" :countRef="countRef"></slot>
-    </header>
-    <main>
-      <slot :flagRef="flagRef"></slot>
-    </main>
-    <footer>
-      <slot name="footer" :titleRef="titleRef"></slot>
-    </footer>
+    <h1>Hello组件</h1>
+    <p>由provide接收到的消息是 "{{message}}"</p>
   </div>
 </template>
 
 <script>
-  import { ref } from "vue";
+  import { inject } from "vue";
   export default {
     setup() {
-      const countRef = ref(100);
-      const titleRef = ref("标题");
-      const flagRef = ref(true);
+      const message = inject('message');
       return {
-        countRef,
-        titleRef,
-        flagRef,
+        message
       };
     },
   };

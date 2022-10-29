@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { ref, provide } from "vue";
+  import { ref, readonly, provide } from "vue";
   import Hello from "./components/Hello2.vue";
   export default {
     components: {
@@ -16,7 +16,7 @@
     },
     setup() {
       const messageRef = ref("学习依赖注入");
-      provide("messageRef", messageRef);
+      provide("messageRef", readonly(messageRef));
       return {
         messageRef
       }
