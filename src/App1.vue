@@ -1,20 +1,16 @@
-<template>
-  <div>
-    <h1>App组件</h1>
-    <hr />
-    <Hello />
-  </div>
-</template>
+<script setup>
+  import { ref, onMounted, onUnmounted } from "vue";
 
-<script>
-  import { provide } from "vue";
-  import Hello from "./components/Hello1.vue";
-  export default {
-    components: {
-      Hello,
-    },
-    setup() {
-       message = provide("message", "学习依赖注入");
-    }
-  };
+  const x = ref(0);
+  const y = ref(0);
+
+  function update(event) {
+    x.value = event.pageX;
+    y.value = event.pageY;
+  }
+
+  onMounted(() => window.addEventListener("mousemove", update));
+  onUnmounted(() => window.removeEventListener("mousemove", update));
 </script>
+
+<template>Mouse position is at: {{ x }}, {{ y }}</template>
